@@ -3,10 +3,12 @@ import {
   CreateDateColumn,
   Entity,
   OneToMany,
+  OneToOne,
   PrimaryColumn,
   UpdateDateColumn,
 } from 'typeorm';
 import { Attendance } from '../attendance/attendance.entity.js';
+import { User } from '../users/user.entity.js';
 
 @Entity('students')
 export class Student {
@@ -27,4 +29,7 @@ export class Student {
 
   @OneToMany(() => Attendance, (attendance) => attendance.student)
   attendances: Attendance[];
+
+  @OneToOne(() => User, (user) => user.student)
+  user: User | null;
 }
